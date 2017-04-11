@@ -22,23 +22,42 @@
 
 int main(int, char const**)
 {
+    
+    
+    
+ //Init
     // Create the main window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
+    sf::RenderWindow window(sf::VideoMode(500, 500), "Battleship");
 
     // Set the Icon
     sf::Image icon;
-    if (!icon.loadFromFile(resourcePath() + "icon.png")) {
+    if (!icon.loadFromFile(resourcePath() + "players_ship_1-sheet0.png")) {
         return EXIT_FAILURE;
     }
     window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
+//Load Resources
+    
     // Load a sprite to display
     sf::Texture texture;
-    if (!texture.loadFromFile(resourcePath() + "cute_image.jpg")) {
+    if (!texture.loadFromFile(resourcePath() + "tiledbackground.png")) {
         return EXIT_FAILURE;
     }
+    
     sf::Sprite sprite(texture);
+    
+    
+    // Load a sprite to display
+    sf::Texture backgroundTile;
+    if (!backgroundTile.loadFromFile(resourcePath() + "tiledbackground.png")) {
+        return EXIT_FAILURE;
+    }
+    
+    sf::Sprite backgroundSprite(backgroundTile);
 
+
+    
+    
     // Create a graphical text to display
     sf::Font font;
     if (!font.loadFromFile(resourcePath() + "sansation.ttf")) {
@@ -47,14 +66,21 @@ int main(int, char const**)
     sf::Text text("Hello SFML", font, 50);
     text.setFillColor(sf::Color::Black);
 
+    
+    
+    
+    
     // Load a music to play
-    sf::Music music;
-    if (!music.openFromFile(resourcePath() + "nice_music.ogg")) {
+    sf::Music backgroundMusic;
+    if (!backgroundMusic.openFromFile(resourcePath() + "navy.ogg")) {
         return EXIT_FAILURE;
     }
+    
+    
+ ////******* MAIN GAME ******** /////
 
     // Play the music
-    music.play();
+    backgroundMusic.play();
 
     // Start the game loop
     while (window.isOpen())
@@ -77,8 +103,8 @@ int main(int, char const**)
         // Clear screen
         window.clear();
 
-        // Draw the sprite
-        window.draw(sprite);
+        //Draw the sprite
+        window.draw(backgroundSprite);
 
         // Draw the string
         window.draw(text);
