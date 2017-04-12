@@ -55,7 +55,6 @@ int main(int, char const**)
     
     sf::Sprite backgroundSprite(backgroundTile);
 
-
     
     
     // Create a graphical text to display
@@ -69,13 +68,13 @@ int main(int, char const**)
     
     
     
-    
+ 
     // Load a music to play
     sf::Music backgroundMusic;
     if (!backgroundMusic.openFromFile(resourcePath() + "navy.ogg")) {
         return EXIT_FAILURE;
     }
-    
+   
     
  ////******* MAIN GAME ******** /////
 
